@@ -1,0 +1,22 @@
+.black {
+	background-color: $soul-black;
+}
+.white {
+	background-color: $soul-white;
+}
+.yellow {
+	background-color: $soul-yellow;
+}
+.board {
+	background: {
+		color: $board;
+		image: url(/images/board.jpg);
+		size: 100%;
+	}
+}
+.menu {
+	background: {
+		image: url(/images/menu.jpg);
+		size: 100%;
+	}
+}

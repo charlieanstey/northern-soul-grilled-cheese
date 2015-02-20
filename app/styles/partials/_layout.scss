@@ -1,0 +1,35 @@
+.container {
+	@include outer-container;
+	width: 100%;
+	section {
+		@include span-columns(12);
+		height: 0;
+		padding-bottom: 100%;
+		position: relative;
+	}
+}
+.logo {
+	width: 75%;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	top: -18px;
+}
+.tagline-gourmet {
+	position: absolute;
+	bottom: 1.4em;
+	left: 1.4em;
+	@include transform(rotate(-3deg));
+}
+.tagline-grilled {
+	position: absolute;
+	bottom: 1.4em;
+	left: 1.4em;
+	@include transform(rotate(-3deg));
+}
+.twitter {
+	width: 15%;
+	position: relative;
+	left: 79%;
+	bottom: 4.2em;
+}

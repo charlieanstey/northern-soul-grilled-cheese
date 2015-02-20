@@ -1,0 +1,77 @@
+@include font-face("DIN Medium", "/fonts/din-medium/din-medium-webfont", $file-formats: eot woff2 woff);
+@include font-face("DIN", "/fonts/din/din-webfont", $file-formats: eot woff2 woff);
+@include font-face("DIN Black", "/fonts/din-black/din-black-webfont", $file-formats: eot woff2 woff);
+h1, h2, h3 {
+	font-family: "DIN Black";
+	font-weight: normal;
+	text-transform: uppercase;
+	text-align: center;
+}
+h4, h5, h6 {
+	font-family: "DIN Medium";
+	font-weight: normal;
+	text-transform: uppercase;
+	text-align: center;
+}
+h1 {
+	font-size: 56px;
+	line-height: 56px;
+	margin-top: (0.5em);
+	margin-bottom: (0.5em);
+	&.dot {
+		// Dot spacers on main headings
+		&::before {
+			content: "• ";
+		}
+		&::after {
+			content: " •";
+		}
+	}
+	// Match heading color to backgrounds
+	.board & {
+		font-size: 34px;
+		color: #ff00ff; //TODO: Remove
+	}
+	.black & {
+		color: $soul-white;
+	}
+	.white &, .yellow & {
+		color: $soul-black;
+	}
+	.menu & {
+		color: $soul-yellow;
+	}
+}
+h2 {
+	font-size: 24px;
+	// Match heading color to backgrounds
+	.black & {
+		color: $soul-yellow;
+	}
+	.white &, .yellow & {
+		color: $soul-black;
+	}
+	.menu & {
+		color: $soul-white;
+	}
+}
+h3 {
+	font-size: 15px;
+	// Match heading color to backgrounds
+	.black &, .menu & {
+		color: $soul-white;
+	}
+	.yellow & {
+		color: $soul-black;
+	}
+}
+h4 {
+	font-size: 16px;
+	// Match heading color to backgrounds
+	.black & {
+		color: $soul-white;
+	}
+	.yellow & {
+		color: $soul-black;
+	}
+}

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+aws-key.json
+dist/
+app/fonts/

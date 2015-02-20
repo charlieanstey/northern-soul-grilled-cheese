@@ -1,0 +1,13 @@
+{
+  "name": "northern-soul-grilled-cheese",
+  "version": "0.1.0",
+  "homepage": "https://github.com/charlieanstey/northern-soul-grilled-cheese",
+  "authors": [
+    "@charlieanstey"
+  ],
+  "description": "One-page website for the Northern Soul Grilled Cheese restaurant",
+  "dependencies": {
+    "bourbon": "~4.2.0",
+    "neat": "~1.7.1"
+  }
+}
