@@ -28,9 +28,19 @@ h1 {
 		}
 	}
 	// Match heading color to backgrounds
-	.board & {
-		font-size: 34px;
-		color: #ff00ff; //TODO: Remove
+	.tagline & {
+		line-height: 0.9em;
+		margin: 0;
+		overflow: hidden;
+		&.tagline-gourmet {
+			font-size: 2.1em;
+		}
+		&.tagline-grilled {
+			font-size: 2.35em;
+		}
+		&.tagline-soups {
+			font-size: 1.8em;
+		}
 	}
 	.black & {
 		color: $soul-white;

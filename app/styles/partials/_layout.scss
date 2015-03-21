@@ -15,21 +15,30 @@
 	position: relative;
 	top: -18px;
 }
-.tagline-gourmet {
-	position: absolute;
-	bottom: 1.4em;
-	left: 1.4em;
-	@include transform(rotate(-3deg));
-}
-.tagline-grilled {
-	position: absolute;
-	bottom: 1.4em;
-	left: 1.4em;
-	@include transform(rotate(-3deg));
-}
 .twitter {
 	width: 15%;
 	position: relative;
 	left: 79%;
 	bottom: 4.2em;
+}
+.tagline {
+	text-align: center;
+	width: 85%;
+	max-width: 1024px;
+	height: 0;
+	padding-bottom: 35%;
+	margin: -20% auto 0;
+	.tagline-gourmet {
+		position: relative;
+		right: 20%;
+		@include transform(rotate(-3deg));
+	}
+	.tagline-grilled {
+		position: relative;
+		@include transform(rotate(-5deg));
+	}
+	.tagline-soups {
+		position: relative;
+		@include transform(rotate(-4deg));
+	}
 }
