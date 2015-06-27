@@ -7,3 +7,6 @@ aws-key.json
 dist/
 app/fonts/
 .vagrant/
+wp-config.local.php
+wp-config.staging.php
+wp-config.production.php
