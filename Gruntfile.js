@@ -416,8 +416,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('default', [
 		'newer:jshint',
 		'test',
-		'build',
-		'robotstxt:staging',
-		's3Deploy:staging'
+		'build'
+		//'robotstxt:staging',
+		//'s3Deploy:staging'
 	]);
 };
