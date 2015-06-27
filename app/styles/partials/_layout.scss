@@ -1,11 +1,26 @@
 .container {
 	@include outer-container;
 	width: 100%;
-	section {
-		@include span-columns(12);
+	min-width: $min-width;
+	.box {
 		height: 0;
+		width: 100%;
 		padding-bottom: 100%;
-		position: relative;
+		float: left;
+		overflow: hidden;
+		// position: relative;
+		&.big-box {
+			@include media($tablet) {
+				width: 50%;
+				padding-bottom: 50%;
+			}
+		}
+		&.small-box {
+			@include media($tablet) {
+				width: 33.333333333333%;
+				padding-bottom: 33.333333333333%;
+			}
+		}
 	}
 }
 .logo {

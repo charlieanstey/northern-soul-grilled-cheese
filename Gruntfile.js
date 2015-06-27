@@ -19,10 +19,10 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		watch: {
-			bower: {
-				files: ['bower.json'],
-				tasks: ['wiredep']
-			},
+			// bower: {
+			// 	files: ['bower.json'],
+			// 	tasks: ['wiredep']
+			// },
 			js: {
 				files: ['app/scripts/{,*/}*.js'],
 				tasks: ['newer:jshint:all'],
@@ -69,16 +69,16 @@ module.exports = function(grunt) {
 		},
 
 		// Automatically inject Bower components into the app
-		wiredep: {
-			app: {
-				src: ['app/index.html'],
-				ignorePath: /\.\.\//
-			},
-			sass: {
-				src: ['app/styles/{,*/}*.{scss,sass}'],
-				ignorePath: /(\.\.\/){1,2}bower_components\//
-			}
-		},
+		// wiredep: {
+		// 	app: {
+		// 		src: ['app/index.html'],
+		// 		ignorePath: /\.\.\//
+		// 	},
+		// 	sass: {
+		// 		src: ['app/styles/{,*/}*.{scss,sass}'],
+		// 		ignorePath: /(\.\.\/){1,2}bower_components\//
+		// 	}
+		// },
 
 		connect: {
 			options: {
@@ -383,7 +383,7 @@ module.exports = function(grunt) {
 
 		grunt.task.run([
 			'clean:server',
-			'wiredep',
+			// 'wiredep',
 			'concurrent:server',
 			'autoprefixer',
 			'copy:serve',
@@ -401,7 +401,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean:dist',
-		'wiredep',
+		// 'wiredep',
 		'useminPrepare',
 		'concurrent:dist',
 		'autoprefixer',
