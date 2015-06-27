@@ -6,3 +6,4 @@ bower_components/
 aws-key.json
 dist/
 app/fonts/
+.vagrant/
