@@ -1,6 +1,6 @@
-@include font-face("DIN Medium", "/fonts/din-medium/din-medium-webfont", $file-formats: eot woff2 woff);
-@include font-face("DIN", "/fonts/din/din-webfont", $file-formats: eot woff2 woff);
-@include font-face("DIN Black", "/fonts/din-black/din-black-webfont", $file-formats: eot woff2 woff);
+@include font-face("DIN Medium", "#{$theme}/fonts/din-medium/din-medium-webfont", $file-formats: eot woff2 woff);
+@include font-face("DIN", "#{$theme}/fonts/din/din-webfont", $file-formats: eot woff2 woff);
+@include font-face("DIN Black", "#{$theme}/fonts/din-black/din-black-webfont", $file-formats: eot woff2 woff);
 h1, h2, h3 {
 	font-family: "DIN Black";
 	font-weight: normal;

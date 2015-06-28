@@ -10,13 +10,13 @@
 .board {
 	background: {
 		color: $board;
-		image: url(/images/board.jpg);
+		image: url(#{$theme}/images/board.jpg);
 		size: 100%;
 	}
 }
 .menu {
 	background: {
-		image: url(/images/menu.jpg);
+		image: url(#{$theme}/images/menu.jpg);
 		size: 100%;
 	}
 }

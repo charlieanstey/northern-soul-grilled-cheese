@@ -5,8 +5,11 @@ bower_components/
 .tmp/
 aws-key.json
 dist/
-app/fonts/
+assets/fonts/
 .vagrant/
 wp-config.local.php
 wp-config.staging.php
 wp-config.production.php
+robots.txt
+wp-content/themes/northernsoul/css
+wp-content/themes/northernsoul/images

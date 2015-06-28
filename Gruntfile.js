@@ -13,18 +13,14 @@ module.exports = function(grunt) {
 
 	// Configurable paths for the application
 	var appConfig = {
-		app: require('./bower.json').appPath || 'app',
-		dist: 'dist'
+		assets: 'assets',
+		theme: 'wp-content/themes/northernsoul'
 	};
 
 	grunt.initConfig({
 		watch: {
-			// bower: {
-			// 	files: ['bower.json'],
-			// 	tasks: ['wiredep']
-			// },
 			js: {
-				files: ['app/scripts/{,*/}*.js'],
+				files: ['assets/scripts/{,*/}*.js'],
 				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
@@ -34,9 +30,9 @@ module.exports = function(grunt) {
 				files: ['test/spec/{,*/}*.js'],
 				tasks: ['newer:jshint:test', 'karma'] //TODO: Replace karma with mocha
 			},
-			scripts: {
-				files: ['app/styles/{,*/}*.{scss,sass}'],
-				tasks: ['sass:server', 'autoprefixer']
+			sass: {
+				files: ['assets/sass/{,*/}*.{scss,sass}'],
+				tasks: ['sass:dist', 'autoprefixer']
 			},
 			gruntfile: {
 				files: ['Gruntfile.js']
@@ -46,9 +42,8 @@ module.exports = function(grunt) {
 					livereload: '<%= connect.options.livereload %>'
 				},
 				files: [
-					'app/{,*/}*.html',
-					'.tmp/styles/{,*/}*.css',
-					'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+					appConfig.theme + '/{,*/}*.php',
+					'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}
 		},
@@ -61,24 +56,12 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '.tmp/styles/',
+					cwd: appConfig.theme + '/css/',
 					src: '{,*/}*.css',
-					dest: '.tmp/styles/'
+					dest: appConfig.theme + '/css/'
 				}]
 			}
 		},
-
-		// Automatically inject Bower components into the app
-		// wiredep: {
-		// 	app: {
-		// 		src: ['app/index.html'],
-		// 		ignorePath: /\.\.\//
-		// 	},
-		// 	sass: {
-		// 		src: ['app/styles/{,*/}*.{scss,sass}'],
-		// 		ignorePath: /(\.\.\/){1,2}bower_components\//
-		// 	}
-		// },
 
 		connect: {
 			options: {
@@ -97,7 +80,7 @@ module.exports = function(grunt) {
 								'/bower_components',
 								connect.static('./bower_components')
 							),
-							connect.static(appConfig.app)
+							connect.static(appConfig.theme)
 						];
 					}
 				}
@@ -113,7 +96,7 @@ module.exports = function(grunt) {
 								'/bower_components',
 								connect.static('./bower_components')
 							),
-							connect.static(appConfig.app)
+							connect.static(appConfig.theme)
 						];
 					}
 				}
@@ -121,7 +104,7 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					open: true,
-					base: 'dist'
+					base: appConfig.theme
 				}
 			}
 		},
@@ -135,7 +118,7 @@ module.exports = function(grunt) {
 			all: {
 				src: [
 					'Gruntfile.js',
-					'app/scripts/{,*/}*.js'
+					appConfig.assets + '/scripts/{,*/}*.js'
 				]
 			},
 			test: {
@@ -152,13 +135,13 @@ module.exports = function(grunt) {
 				files: [{
 					dot: true,
 					src: [
-						'.tmp',
-						'dist/{,*/}*',
-						'!dist/.git{,*/}*'
+						appConfig.theme + '/css/{,*/}*',
+						appConfig.theme + '/fonts/{,*/}*',
+						appConfig.theme + '/images/{,*/}*',
+						'.tmp'
 					]
 				}]
-			},
-			server: '.tmp'
+			}
 		},
 
 		// Compiles Sass to CSS and generates necessary files if requested
@@ -169,106 +152,28 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: 'app/styles',
+					cwd: appConfig.assets + '/sass',
 					src: ['*.scss'],
-					dest: '.tmp/styles',
-					ext: '.css'
-				}]
-			},
-			server: {
-				options: {
-					debugInfo: true
-				},
-				files: [{
-					expand: true,
-					cwd: 'app/styles',
-					src: ['*.scss'],
-					dest: '.tmp/styles',
+					dest: appConfig.theme + '/css',
 					ext: '.css'
 				}]
 			}
 		},
-
-		// Renames files for browser caching purposes
-		filerev: {
-			dist: {
-				src: [
-					'dist/scripts/{,*/}*.js',
-					'dist/styles/{,*/}*.css',
-					'dist/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-					'dist/styles/fonts/*'
-				]
-			}
-		},
-
-		// Reads HTML for usemin blocks to enable smart builds that automatically
-		// concat, minify and revision files. Creates configurations in memory so
-		// additional tasks can operate on them
-		useminPrepare: {
-			html: 'app/index.html',
-			options: {
-				dest: 'dist',
-				flow: {
-					html: {
-						steps: {
-							js: ['concat', 'uglifyjs'],
-							css: ['cssmin']
-						},
-						post: {}
-					}
-				}
-			}
-		},
-
-		// Performs rewrites based on filerev and the useminPrepare configuration
-		usemin: {
-			html: ['dist/{,*/}*.html'],
-			css: ['dist/styles/{,*/}*.css'],
-			options: {
-				assetsDirs: ['dist', 'dist/images']
-			}
-		},
-
-		// The following *-min tasks will produce minified files in the dist folder
-		// By default, your `index.html`'s <!-- Usemin block --> will take care of
-		// minification. These next options are pre-configured if you do not wish
-		// to use the Usemin blocks.
-		// cssmin: {
-		//   dist: {
-		//     files: {
-		//       'dist/styles/main.css': [
-		//         '.tmp/styles/{,*/}*.css'
-		//       ]
-		//     }
-		//   }
-		// },
-		// uglify: {
-		//   dist: {
-		//     files: {
-		//       'dist/scripts/scripts.js': [
-		//         'dist/scripts/scripts.js'
-		//       ]
-		//     }
-		//   }
-		// },
-		// concat: {
-		//   dist: {}
-		// },
 
 		htmlmin: {
 			dist: {
 				options: {
-					collapseWhitespace: true,
+					collapseWhitespace: false,
 					conservativeCollapse: true,
 					collapseBooleanAttributes: true,
 					removeCommentsFromCDATA: true,
-					removeOptionalTags: true
+					removeOptionalTags: false
 				},
 				files: [{
 					expand: true,
-					cwd: 'dist',
-					src: ['*.html', 'views/{,*/}*.html'],
-					dest: 'dist'
+					cwd: appConfig.theme,
+					src: ['/{,*/}*.php'],
+					dest: appConfig.theme
 				}]
 			}
 		},
@@ -276,7 +181,23 @@ module.exports = function(grunt) {
 		// Replace Google CDN references
 		cdnify: {
 			dist: {
-				html: ['dist/*.html']
+				html: [appConfig.theme + '/{,*/}*.php']
+			}
+		},
+
+		cssmin: {
+			options: {
+				//relativeTo: appConfig.theme,
+				//root: '../'
+			},
+			minify: {
+				files: [{
+					expand: true,
+					cwd: appConfig.theme + '/css',
+					src: ['*.css', '!*.min.css'],
+					dest: appConfig.theme + '/css',
+					ext: '.min.css'
+				}]
 			}
 		},
 
@@ -286,30 +207,13 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: 'app',
-					dest: 'dist',
+					cwd: appConfig.assets,
+					dest: appConfig.theme,
 					src: [
 						'*.{ico,png,txt}',
-						'.htaccess',
-						'*.html',
-						'views/{,*/}*.html',
 						'images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 						'fonts/{,*/}*.*'
 					]
-				}, {
-					expand: true,
-					cwd: '.tmp/images',
-					dest: 'dist/images',
-					src: ['generated/*']
-				}]
-			},
-			serve: {
-				files: [{
-					expand: true,
-					dot: true,
-					cwd: 'app',
-					dest: '.tmp',
-					src: ['fonts/{,*/}*.*']
 				}]
 			},
 			styles: {
@@ -322,14 +226,14 @@ module.exports = function(grunt) {
 
 		robotstxt: {
 			dist: {
-				dest: 'dist/',
+				dest: '',
 				policy: [{
 					ua: '*',
 					allow: '/'
 				}]
 			},
 			staging: {
-				dest: 'dist/',
+				dest: '',
 				policy: [{
 					ua: '*',
 					disallow: '/'
@@ -364,14 +268,11 @@ module.exports = function(grunt) {
 
 		// Run some tasks in parallel to speed up the build process
 		concurrent: {
-			server: [
-				'sass:server'
-			],
 			test: [
 				'sass'
 			],
 			dist: [
-				'sass:dist'
+				'sass'
 			]
 		}
 	});
@@ -382,18 +283,16 @@ module.exports = function(grunt) {
 		}
 
 		grunt.task.run([
-			'clean:server',
-			// 'wiredep',
+			'clean',
 			'concurrent:server',
 			'autoprefixer',
-			'copy:serve',
 			'connect:livereload',
 			'watch'
 		]);
 	});
 
 	grunt.registerTask('test', [
-		'clean:server',
+		'clean',
 		'concurrent:test',
 		'autoprefixer',
 		'connect:test' //TODO: Add test runner
@@ -401,15 +300,11 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean:dist',
-		// 'wiredep',
-		'useminPrepare',
 		'concurrent:dist',
 		'autoprefixer',
 		'copy:dist',
 		'cdnify',
 		'cssmin',
-		'filerev',
-		'usemin',
 		'htmlmin'
 	]);
 

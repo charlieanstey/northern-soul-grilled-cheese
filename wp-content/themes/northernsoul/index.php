@@ -1,7 +1,9 @@
 <?php get_header(); ?>
 
 	<!-- <div style="height: 50px; background: #f00; width: 50%;"></div> -->
-	<section class="box board big-box"> <img class="logo" src="images/logo.a6685845.svg"> <img class="twitter" src="images/twitter.9383c9ac.svg">
+	<section class="box board big-box">
+		<img class="logo" src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg">
+		<img class="twitter" src="<?php echo get_stylesheet_directory_uri(); ?>/images/twitter.svg">
 		<div class="tagline">
 			<h1 class="tagline-gourmet">Gourmet</h1>
 			<h1 class="tagline-grilled">Grilled Cheese</h1>
@@ -10,15 +12,20 @@
 	<section class="box black big-box">
 		<h1>You have arrived</h1>
 		<h2>Welcome to <br>Manchester's premier gourmet grilled cheese <br>pop up. Banging out killer eats and rare beats</h2>
-		<h4>#KeepTheFaith</h4> </section>
+		<h4>#KeepTheFaith</h4>
+	</section>
 	<section class="box white small-box">
-		<h1 class="dot">Location</h1> </section>
+		<h1 class="dot">Location</h1>
+	</section>
 	<section class="box menu small-box">
-		<h1 class="dot">Menu</h1> </section>
+		<h1 class="dot">Menu</h1>
+	</section>
 	<section class="box yellow small-box">
-		<h1 class="dot">Social</h1> </section>
+		<h1 class="dot">Social</h1>
+	</section>
 	<section class="box black small-box">
-		<h1>Are you a big fan of grilled cheese?</h1> </section>
+		<h1>Are you a big fan of grilled cheese?</h1>
+	</section>
 	<section class="box board small-box"></section>
 
 	<?php if ( have_posts() ) : ?>
