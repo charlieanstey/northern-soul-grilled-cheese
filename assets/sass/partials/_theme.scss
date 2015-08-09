@@ -16,7 +16,37 @@
 }
 .menu {
 	background: {
-		image: url(#{$theme}/images/menu.jpg);
+		image: url(#{$theme}/images/menu-coming-soon.jpg);
 		size: 100%;
 	}
+}
+.tweets {
+	width: 75%;
+	padding: 3% 5%;
+	margin:0 auto;
+	background: $soul-white;
+	position: relative;
+	border-radius: 15px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 22%;
+		top: 100%;
+		width: 0;
+		height: 0;
+		border-top: 25px solid $soul-white;
+		border-right: 25px solid transparent;
+	}
+}
+.tap-button {
+	width: 60px;
+	height: 60px;
+	background: $soul-yellow;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
 }

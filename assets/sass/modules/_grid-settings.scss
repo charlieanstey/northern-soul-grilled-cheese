@@ -7,5 +7,16 @@ $visual-grid-opacity: 0.5;
 // Change the grid settings
 $grid-columns: 4 !default;
 $min-width: em(220, 10);
-$mobile: new-breakpoint(min-width 320px 4);
-$tablet: new-breakpoint(min-width 736px 12);
+
+// Soul
+// Classic
+// Slaw
+// Cure
+// Mac Attack
+// Pig on a Lead
+$soul: new-breakpoint(min-width 352px 4);
+$classic: new-breakpoint(min-width 480px 12);
+$slaw: new-breakpoint(min-width 608px 12);
+$cure: new-breakpoint(min-width 736px 12);
+$macattack: new-breakpoint(min-width 912px 12);
+$pigonalead: new-breakpoint(min-width 1088px 12);
